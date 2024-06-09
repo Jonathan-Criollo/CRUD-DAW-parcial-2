@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Materias</title>
+</h:head>
+<h:body>
+    <ui:include src="menu.xhtml" />
+    <h:form id="materiaForm">
+        <h:panelGrid columns="2">
+            <h:outputLabel for="nombre" value="Nombre:" />
+            <h:inputText id="nombre" value="#{materiaController.materia.nombre}" required="true" />
+
+            <h:outputLabel for="descripcion" value="Descripción:" />
+            <h:inputText id="descripcion" value="#{materiaController.materia.descripcion}" />
+
+            <h:outputLabel for="codigoMateria" value="Código de Materia:" />
+            <h:inputText id="codigoMateria" value="#{materiaController.materia.codigoMateria}" required="true" />
+        </h:panelGrid>
+        <h:commandButton value="Guardar" action="#{materiaController.guardarMateria}" />
+    </h:form>
+
+    <h:dataTable value="#{materiaController.materiasList}" var="materia">
+        <h:column>
+            <f:facet name="header">Nombre</f:facet>
+            #{materia.nombre}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Descripción</f:facet>
+            #{materia.descripcion}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Código de Materia</f:facet>
+            #{materia.codigoMateria}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Acciones</f:facet>
+            <h:commandButton value="Editar" action="#{materiaController.llenarFormEditar(materia)}" />
+            <h:commandButton value="Eliminar" action="#{materiaController.eliminarMateria(materia)}" />
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

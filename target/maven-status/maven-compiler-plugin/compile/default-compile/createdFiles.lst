@@ -1,5 +1,9 @@
 video\webbapp\controladores\IndexController.class
+video\webapp\entidades\Inscripciones.class
 video\webapp\negocio\DataService.class
-video\webapp\resources\App.class
 video\webapp\resources\Recurso.class
+video\webapp\resources\App.class
+video\webapp\entidades\Materia.class
+video\webbapp\controladores\MateriaController.class
 video\webapp\entidades\Alumno.class
+video\webbapp\controladores\InscripcionController.class
