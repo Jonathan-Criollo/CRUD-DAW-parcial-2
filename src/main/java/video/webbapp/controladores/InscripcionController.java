@@ -28,12 +28,19 @@ public class InscripcionController {
         inscripcionesList = servicio.getInscripciones();
         alumnosList = servicio.getAlumnos();
         materiasList = servicio.getMaterias();
+        // Inicializa la inscripción con objetos internos
+        inscripcion = new Inscripciones();
+        inscripcion.setAlumno(new Alumno()); // Asigna un objeto Alumno nuevo
+        inscripcion.setMateria(new Materia()); // Asigna un objeto Materia nuevo
     }
 
     public void guardarInscripcion() {
         servicio.saveInscripcion(inscripcion);
+        // Resetear inscripción después de guardar
         inscripcion = new Inscripciones();
-        cargarDatos();
+        inscripcion.setAlumno(new Alumno()); // Resetear Alumno
+        inscripcion.setMateria(new Materia()); // Resetear Materia
+        cargarDatos(); // Recargar datos desde el servicio
     }
 
     // Getters y Setters

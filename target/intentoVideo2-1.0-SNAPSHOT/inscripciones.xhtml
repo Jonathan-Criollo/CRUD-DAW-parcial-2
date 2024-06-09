@@ -4,60 +4,65 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <title>Inscripciones</title>
-</h:head>
-<h:body>
-    <ui:include src="menu.xhtml" />
-    <h:form id="inscripcionForm">
-        <h:panelGrid columns="2">
-            <h:outputLabel for="alumno" value="Alumno:" />
-            <h:selectOneMenu id="alumno" value="#{inscripcionController.inscripcion.alumno.id}">
-                <f:selectItems value="#{inscripcionController.alumnosList}" var="alumno"
-                               itemValue="#{alumno.id}" itemLabel="#{alumno.nombre}" />
-            </h:selectOneMenu>
+    <h:head>
+        <title>Inscripciones</title>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml" />
+        <p:panel header="Inscripción de Alumnos" style="margin-bottom:20px;">
+            <h:form id="inscripcionForm">
+                <p:panelGrid columns="2" styleClass="ui-nogrid">
+                    <p:outputLabel for="alumno" value="Alumno:" />
+                    <p:selectOneMenu id="alumno" value="#{inscripcionController.inscripcion.alumno.id}" style="width:100%;">
+                        <f:selectItem itemLabel="Seleccione Alumno" itemValue="" noSelectionOption="true"/>
+                        <f:selectItems value="#{inscripcionController.alumnosList}" var="alumno"
+                                       itemLabel="#{alumno.nombre}" itemValue="#{alumno.id}" />
+                    </p:selectOneMenu>
 
-            <h:outputLabel for="materia" value="Materia:" />
-            <h:selectOneMenu id="materia" value="#{inscripcionController.inscripcion.materia.id}">
-                <f:selectItems value="#{inscripcionController.materiasList}" var="materia"
-                               itemValue="#{materia.id}" itemLabel="#{materia.nombre}" />
-            </h:selectOneMenu>
+                    <p:outputLabel for="materia" value="Materia:" />
+                    <p:selectOneMenu id="materia" value="#{inscripcionController.inscripcion.materia.id}" style="width:100%;">
+                        <f:selectItem itemLabel="Seleccione Materia" itemValue="" noSelectionOption="true"/>
+                        <f:selectItems value="#{inscripcionController.materiasList}" var="materia"
+                                       itemLabel="#{materia.nombre}" itemValue="#{materia.id}" />
+                    </p:selectOneMenu>
 
-            <h:outputLabel for="ciclo" value="Ciclo:" />
-            <h:inputText id="ciclo" value="#{inscripcionController.inscripcion.ciclo}" required="true" />
+                    <p:outputLabel for="ciclo" value="Ciclo:" />
+                    <p:inputText id="ciclo" value="#{inscripcionController.inscripcion.ciclo}" required="true" />
 
-            <h:outputLabel for="anio" value="Año:" />
-            <h:inputText id="anio" value="#{inscripcionController.inscripcion.anio}" required="true" />
+                    <p:outputLabel for="anio" value="Año:" />
+                    <p:inputText id="anio" value="#{inscripcionController.inscripcion.anio}" required="true" />
 
-            <h:outputLabel for="fechaInscripcion" value="Fecha de Inscripción:" />
-            <h:inputText id="fechaInscripcion" value="#{inscripcionController.inscripcion.fechaInscripcion}" required="true">
-                <f:convertDateTime pattern="yyyy-MM-dd" />
-            </h:inputText>
-        </h:panelGrid>
-        <h:commandButton value="Guardar" action="#{inscripcionController.guardarInscripcion}" />
-    </h:form>
+                    <p:outputLabel for="fechaInscripcion" value="Fecha de Inscripción:" />
+                    <p:calendar id="fechaInscripcion" value="#{inscripcionController.inscripcion.fechaInscripcion}"
+                                pattern="yyyy-MM-dd" navigator="true" />
+                </p:panelGrid>
+                <p:commandButton value="Guardar" action="#{inscripcionController.guardarInscripcion}" update="inscripcionTable" icon="pi pi-save"/>
+            </h:form>
+        </p:panel>
 
-    <h:dataTable value="#{inscripcionController.inscripcionesList}" var="inscripcion">
-        <h:column>
-            <f:facet name="header">Alumno</f:facet>
-            #{inscripcion.alumno.nombre}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Materia</f:facet>
-            #{inscripcion.materia.nombre}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Ciclo</f:facet>
-            #{inscripcion.ciclo}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Año</f:facet>
-            #{inscripcion.anio}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Fecha de Inscripción</f:facet>
-            #{inscripcion.fechaInscripcion}
-        </h:column>
-    </h:dataTable>
-</h:body>
+        <p:dataTable id="inscripcionTable" var="inscripcion" value="#{inscripcionController.inscripcionesList}" 
+                     widgetVar="inscripcionTable" styleClass="ui-datatable"
+                     paginator="true" rows="10" paginatorPosition="bottom"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord} to {endRecord} of {totalRecords}"
+                     rowsPerPageTemplate="5,10,15">
+            <p:column headerText="Alumno" sortBy="#{inscripcion.alumno.nombre}">
+                #{inscripcion.alumno.nombre}
+            </p:column>
+            <p:column headerText="Materia" sortBy="#{inscripcion.materia.nombre}">
+                #{inscripcion.materia.nombre}
+            </p:column>
+            <p:column headerText="Ciclo" sortBy="#{inscripcion.ciclo}">
+                #{inscripcion.ciclo}
+            </p:column>
+            <p:column headerText="Año" sortBy="#{inscripcion.anio}">
+                #{inscripcion.anio}
+            </p:column>
+            <p:column headerText="Fecha de Inscripción" sortBy="#{inscripcion.fechaInscripcion}">
+                <h:outputText value="#{inscripcion.fechaInscripcion}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+            </p:column>
+        </p:dataTable>
+    </h:body>
 </html>
