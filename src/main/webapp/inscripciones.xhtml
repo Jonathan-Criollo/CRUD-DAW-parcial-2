@@ -8,6 +8,8 @@
         <title>Inscripciones</title>
     </h:head>
     <h:body>
+        <!-- Título Principal -->
+        <h1 style="text-align:center; margin-bottom:20px;">Inscripciones Web App</h1>
         <ui:include src="menu.xhtml" />
         <p:panel header="Inscripción de Alumnos" style="margin-bottom:20px;">
             <h:form id="inscripcionForm">
@@ -36,7 +38,8 @@
                     <p:calendar id="fechaInscripcion" value="#{inscripcionController.inscripcion.fechaInscripcion}"
                                 pattern="yyyy-MM-dd" navigator="true" />
                 </p:panelGrid>
-                <p:commandButton value="Guardar" action="#{inscripcionController.guardarInscripcion}" update="inscripcionTable" icon="pi pi-save"/>
+                <p:commandButton value="Guardar" action="#{inscripcionController.guardarInscripcion}" 
+                                 update="inscripcionTable" icon="pi pi-save" styleClass="ui-button-success"/>
             </h:form>
         </p:panel>
 

@@ -8,8 +8,9 @@
         <title>Gestión de Materias</title>
     </h:head>
     <h:body>
+        <!-- Título Principal -->
+        <h1 style="text-align:center; margin-bottom:20px;">Inscripciones Web App</h1>
         <ui:include src="menu.xhtml" />
-
         <p:panel header="Gestión de Materias">
             <h:form id="materiaForm">
                 <p:messages id="materiaMessages" closable="true"/>
@@ -44,11 +45,12 @@
             <p:column headerText="Código de Materia">
                 #{materia.codigoMateria}
             </p:column>
-            <p:column headerText="Acciones" style="width:100px;text-align:center;">
-                <p:commandButton icon="pi pi-pencil" title="Editar" update=":materiaForm"
+            <p:column headerText="Acciones" style="width:225px;text-align:center;">
+                <p:commandButton value="Editar" icon="pi pi-pencil" title="Editar" update=":materiaForm"
                                  actionListener="#{materiaController.llenarFormEditar(materia)}"
                                  oncomplete="PF('materiaDialog').show();" />
-                <p:commandButton icon="pi pi-trash" title="Eliminar" oncomplete="PF('confirmDelete').show();"/>
+                <p:spacer width="10"/>
+                <p:commandButton value="Eliminar" icon="pi pi-trash" title="Eliminar" style="background-color: red" oncomplete="PF('confirmDelete').show();"/>
             </p:column>
         </p:dataTable>
 
