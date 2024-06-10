@@ -35,8 +35,9 @@
                     <p:inputText id="anio" value="#{inscripcionController.inscripcion.anio}" required="true" />
 
                     <p:outputLabel for="fechaInscripcion" value="Fecha de Inscripción:" />
-                    <p:calendar id="fechaInscripcion" value="#{inscripcionController.inscripcion.fechaInscripcion}"
-                                pattern="yyyy-MM-dd" navigator="true" />
+                    <h:outputText id="fechaInscripcion" value="#{inscripcionController.inscripcion.fechaInscripcion}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:outputText>
                 </p:panelGrid>
                 <p:commandButton value="Guardar" action="#{inscripcionController.guardarInscripcion}" 
                                  update="inscripcionTable" icon="pi pi-save" styleClass="ui-button-success"/>
