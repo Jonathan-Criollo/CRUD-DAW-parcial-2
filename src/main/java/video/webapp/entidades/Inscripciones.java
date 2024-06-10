@@ -12,6 +12,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "inscripciones")
 public class Inscripciones {
@@ -38,17 +39,18 @@ public class Inscripciones {
     @Column(name = "fecha_inscripcion", nullable = false)
     private Date fechaInscripcion;
 
-    // Constructor vacío
+    // Constructor vacío que establece la fecha de inscripción actual
     public Inscripciones() {
+        this.fechaInscripcion = new Date();
     }
 
-    // Constructor con parámetros
-    public Inscripciones(Alumno alumno, Materia materia, String ciclo, int anio, Date fechaInscripcion) {
+    // Constructor con parámetros que incluye la fecha actual
+    public Inscripciones(Alumno alumno, Materia materia, String ciclo, int anio) {
         this.alumno = alumno;
         this.materia = materia;
         this.ciclo = ciclo;
         this.anio = anio;
-        this.fechaInscripcion = fechaInscripcion;
+        this.fechaInscripcion = new Date(); // Establecer la fecha actual
     }
 
     // Getters y Setters
@@ -96,7 +98,5 @@ public class Inscripciones {
         return fechaInscripcion;
     }
 
-    public void setFechaInscripcion(Date fechaInscripcion) {
-        this.fechaInscripcion = fechaInscripcion;
-    }
+    
 }
