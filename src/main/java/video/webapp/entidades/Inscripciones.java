@@ -12,7 +12,6 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
 
-
 @Entity
 @Table(name = "inscripciones")
 public class Inscripciones {
@@ -33,7 +32,7 @@ public class Inscripciones {
     private String ciclo;
 
     @Column(nullable = false)
-    private int anio;
+    private String anio;  // Cambiado a String
 
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_inscripcion", nullable = false)
@@ -45,7 +44,7 @@ public class Inscripciones {
     }
 
     // Constructor con parámetros que incluye la fecha actual
-    public Inscripciones(Alumno alumno, Materia materia, String ciclo, int anio) {
+    public Inscripciones(Alumno alumno, Materia materia, String ciclo, String anio) {
         this.alumno = alumno;
         this.materia = materia;
         this.ciclo = ciclo;
@@ -86,11 +85,11 @@ public class Inscripciones {
         this.ciclo = ciclo;
     }
 
-    public int getAnio() {
+    public String getAnio() {
         return anio;
     }
 
-    public void setAnio(int anio) {
+    public void setAnio(String anio) {
         this.anio = anio;
     }
 
@@ -98,5 +97,7 @@ public class Inscripciones {
         return fechaInscripcion;
     }
 
-    
+    public void setFechaInscripcion(Date fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
+    }
 }

@@ -50,6 +50,11 @@
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                      currentPageReportTemplate="{startRecord} to {endRecord} of {totalRecords}"
                      rowsPerPageTemplate="5,10,15">
+
+            <!-- Nueva columna para el ID de la inscripción -->
+            <p:column headerText="ID Inscripción" sortBy="#{inscripcion.id}">
+                #{inscripcion.id}
+            </p:column>
             <p:column headerText="Alumno" sortBy="#{inscripcion.alumno.nombre}">
                 #{inscripcion.alumno.nombre}
             </p:column>
